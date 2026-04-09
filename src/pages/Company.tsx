@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion';
 import { ChevronRight, Award, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { AnimatedCounter } from '../components/AnimatedCounter';
 
 export function Company() {
   const stats = [
-    { value: '25+', label: 'Enterprise IT Consulting' },
-    { value: '12+', label: 'Intel IP Architecture' },
-    { value: '4+', label: 'Independent PLM Architect' },
-    { value: '100%', label: 'Agile Delivery & Scrum' }
+    { end: 25, duration: 2800, suffix: '+', label: 'Enterprise IT Consulting' },
+    { end: 12, duration: 2000, suffix: '+', label: 'Intel IP Architecture' },
+    { end: 4, duration: 1200, suffix: '+', label: 'Independent PLM Architect' },
+    { end: 100, duration: 2500, suffix: '%', label: 'Agile Delivery & Scrum' }
   ];
 
   const timeline = [
@@ -90,34 +91,17 @@ export function Company() {
       {/* By The Numbers Stats Grid */}
       <section className="px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={{
-              animate: {
-                transition: {
-                  staggerChildren: 0.1
-                }
-              }
-            }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
-              <motion.div
+              <AnimatedCounter
                 key={index}
-                variants={fadeInUp}
-                className="p-8 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#8F00FF]/30 transition-all hover:bg-white/[0.08]"
-              >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent mb-3">
-                  {stat.value}
-                </div>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                  {stat.label}
-                </p>
-              </motion.div>
+                end={stat.end}
+                duration={stat.duration}
+                suffix={stat.suffix}
+                label={stat.label}
+              />
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
