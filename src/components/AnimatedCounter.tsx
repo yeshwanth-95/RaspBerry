@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { BorderGlow } from './BorderGlow';
 
 interface AnimatedCounterProps {
   end: number;
@@ -63,15 +64,20 @@ export function AnimatedCounter({ end, duration, suffix = '', label }: AnimatedC
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6 }}
-      className="p-8 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#8F00FF]/30 transition-all hover:bg-white/[0.08]"
     >
-      <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent mb-3 font-mono">
-        {count}
-        {suffix}
-      </div>
-      <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-        {label}
-      </p>
+      <BorderGlow
+        className="p-8 rounded-2xl"
+        backgroundColor="#0B0812"
+        colors={['#8F00FF', '#c084fc', '#f472b6']}
+      >
+        <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent mb-3 font-mono">
+          {count}
+          {suffix}
+        </div>
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+          {label}
+        </p>
+      </BorderGlow>
     </motion.div>
   );
 }

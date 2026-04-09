@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Server, Activity, Shield, Box, FileJson, Users, ChevronRight, Zap, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { BorderGlow } from '../components/BorderGlow';
 
 export function Solutions() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -157,39 +158,44 @@ export function Solutions() {
                   }}
                   onMouseEnter={() => setHoveredCard(index)}
                   onMouseLeave={() => setHoveredCard(null)}
-                  className={`group relative p-7 rounded-2xl border-2 backdrop-blur-sm transition-all duration-500 cursor-pointer ${card.borderColor} ${card.hoverColor}`}
                 >
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${card.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
+                  <BorderGlow
+                    className="p-7 rounded-2xl h-full cursor-pointer"
+                    backgroundColor="#0B0812"
+                    colors={['#8F00FF', '#c084fc', '#f472b6']}
+                  >
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 rounded-lg bg-white/5 transition-colors">
+                          <IconComponent className="w-6 h-6 text-white" strokeWidth={1.5} />
+                        </div>
+                        <ArrowUpRight className="w-5 h-5 text-white/30 transition-all duration-300" />
+                      </div>
 
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="p-3 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
-                      <IconComponent className="w-6 h-6 text-white" strokeWidth={1.5} />
+                      <h3 className="text-xl font-bold mb-3 text-white transition-colors">
+                        {card.title}
+                      </h3>
+
+                      <p className="text-sm text-gray-400 mb-5 leading-relaxed flex-grow">
+                        {card.description}
+                      </p>
+
+                      <div className="space-y-2 pt-5 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {card.features.map((feature, idx) => (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={hoveredCard === index ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                            transition={{ delay: idx * 0.05 }}
+                            className="flex items-center gap-2 text-xs text-gray-300"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#8F00FF] to-purple-400"></div>
+                            {feature}
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/70 transition-all duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-white transition-colors">
-                    {card.title}
-                  </h3>
-
-                  <p className="text-sm text-gray-400 mb-5 leading-relaxed">
-                    {card.description}
-                  </p>
-
-                  <div className="space-y-2 pt-5 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {card.features.map((feature, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={hoveredCard === index ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                        transition={{ delay: idx * 0.05 }}
-                        className="flex items-center gap-2 text-xs text-gray-300"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#8F00FF] to-purple-400"></div>
-                        {feature}
-                      </motion.div>
-                    ))}
-                  </div>
+                  </BorderGlow>
                 </motion.div>
               );
             })}

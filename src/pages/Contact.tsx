@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { useState } from 'react';
+import { BorderGlow } from '../components/BorderGlow';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -95,37 +96,49 @@ export function Contact() {
 
               {/* Contact Info Cards */}
               <div className="space-y-4">
-                <motion.a
-                  href="mailto:connect@raspberryplm.com"
-                  variants={fadeInUp}
-                  className="flex items-center gap-4 p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#8F00FF]/30 transition-all group"
+                <BorderGlow
+                  className="rounded-xl overflow-hidden"
+                  backgroundColor="#0B0812"
+                  colors={['#8F00FF', '#c084fc', '#f472b6']}
                 >
-                  <div className="flex-shrink-0">
-                    <Mail className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Email</p>
-                    <p className="text-lg font-medium text-white group-hover:text-[#8F00FF] transition-colors">
-                      connect@raspberryplm.com
-                    </p>
-                  </div>
-                </motion.a>
+                  <motion.a
+                    href="mailto:connect@raspberryplm.com"
+                    variants={fadeInUp}
+                    className="flex items-center gap-4 p-6"
+                  >
+                    <div className="flex-shrink-0">
+                      <Mail className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">Email</p>
+                      <p className="text-lg font-medium text-white transition-colors">
+                        connect@raspberryplm.com
+                      </p>
+                    </div>
+                  </motion.a>
+                </BorderGlow>
 
-                <motion.a
-                  href="tel:+919866655231"
-                  variants={fadeInUp}
-                  className="flex items-center gap-4 p-6 rounded-xl backdrop-blur-md bg-white/5 border border-white/10 hover:border-[#8F00FF]/30 transition-all group"
+                <BorderGlow
+                  className="rounded-xl overflow-hidden"
+                  backgroundColor="#0B0812"
+                  colors={['#8F00FF', '#c084fc', '#f472b6']}
                 >
-                  <div className="flex-shrink-0">
-                    <Phone className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400">Phone</p>
-                    <p className="text-lg font-medium text-white group-hover:text-[#8F00FF] transition-colors">
-                      +91 9866655231
-                    </p>
-                  </div>
-                </motion.a>
+                  <motion.a
+                    href="tel:+919866655231"
+                    variants={fadeInUp}
+                    className="flex items-center gap-4 p-6"
+                  >
+                    <div className="flex-shrink-0">
+                      <Phone className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-400">Phone</p>
+                      <p className="text-lg font-medium text-white transition-colors">
+                        +91 9866655231
+                      </p>
+                    </div>
+                  </motion.a>
+                </BorderGlow>
               </div>
             </motion.div>
 
@@ -136,7 +149,12 @@ export function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="flex items-center"
             >
-              <div className="w-full p-8 md:p-10 rounded-2xl backdrop-blur-md bg-white/5 border border-white/10">
+              <BorderGlow
+                className="w-full rounded-2xl"
+                backgroundColor="#0B0812"
+                colors={['#8F00FF', '#c084fc', '#f472b6']}
+              >
+                <div className="w-full p-8 md:p-10">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center">
                     <motion.div
@@ -229,7 +247,8 @@ export function Contact() {
                     </button>
                   </form>
                 )}
-              </div>
+                </div>
+              </BorderGlow>
             </motion.div>
           </div>
         </div>

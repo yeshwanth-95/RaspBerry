@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, Target, Zap, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { BorderGlow } from '../components/BorderGlow';
 
 export function CaseStudies() {
   const cases = [
@@ -88,52 +89,55 @@ export function CaseStudies() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="group relative overflow-hidden rounded-2xl p-8 md:p-10 backdrop-blur-xl bg-white/[0.05] border border-white/10 hover:border-[#8F00FF]/50 transition-all hover:bg-white/[0.08]"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#8F00FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+                <BorderGlow
+                  className="p-8 md:p-10 rounded-2xl"
+                  backgroundColor="#0B0812"
+                  colors={['#8F00FF', '#c084fc', '#f472b6']}
+                >
+                  <div className="flex flex-col gap-6">
+                    <div>
+                      <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-white mb-3">
+                        {caseStudy.title}
+                      </h2>
+                      <p className="text-sm md:text-base text-[#8F00FF] font-medium">
+                        {caseStudy.client}
+                      </p>
+                    </div>
 
-                <div className="relative z-10 flex flex-col gap-6">
-                  <div>
-                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight text-white mb-3">
-                      {caseStudy.title}
-                    </h2>
-                    <p className="text-sm md:text-base text-[#8F00FF] font-medium">
-                      {caseStudy.client}
-                    </p>
+                    <div className="space-y-6">
+                      <div>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Target className="w-5 h-5 text-[#8F00FF]" />
+                          <h3 className="text-lg font-semibold text-white">The Challenge</h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                          {caseStudy.challenge}
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Zap className="w-5 h-5 text-[#8F00FF]" />
+                          <h3 className="text-lg font-semibold text-white">The Solution</h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                          {caseStudy.solution}
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-3 mb-3">
+                          <CheckCircle className="w-5 h-5 text-[#8F00FF]" />
+                          <h3 className="text-lg font-semibold text-white">The Impact</h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                          {caseStudy.impact}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <Target className="w-5 h-5 text-[#8F00FF]" />
-                        <h3 className="text-lg font-semibold text-white">The Challenge</h3>
-                      </div>
-                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {caseStudy.challenge}
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <Zap className="w-5 h-5 text-[#8F00FF]" />
-                        <h3 className="text-lg font-semibold text-white">The Solution</h3>
-                      </div>
-                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {caseStudy.solution}
-                      </p>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <CheckCircle className="w-5 h-5 text-[#8F00FF]" />
-                        <h3 className="text-lg font-semibold text-white">The Impact</h3>
-                      </div>
-                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {caseStudy.impact}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                </BorderGlow>
               </motion.div>
             ))}
           </motion.div>

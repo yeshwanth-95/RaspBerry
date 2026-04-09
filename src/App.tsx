@@ -6,6 +6,7 @@ import { CaseStudies } from './pages/CaseStudies';
 import { Company } from './pages/Company';
 import { Contact } from './pages/Contact';
 import { PartnersMarquee } from './components/PartnersMarquee';
+import { BorderGlow } from './components/BorderGlow';
 
 const RBMonogram = ({ className = "w-8 h-8" }) => (
   <svg viewBox="0 0 48 48" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -175,16 +176,20 @@ function HomePage() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className="group relative p-8 rounded-2xl backdrop-blur-xl bg-white/[0.02] border border-white/10 hover:border-[#8F00FF]/30 transition-all hover:bg-white/[0.04]"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#8F00FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-                  <div className="relative">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#8F00FF]/20 to-[#5E239D]/20 border border-[#8F00FF]/20 flex items-center justify-center mb-6">
-                      <IconComponent className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
+                  <BorderGlow
+                    className="h-full p-8 rounded-2xl"
+                    backgroundColor="#0B0812"
+                    colors={['#8F00FF', '#c084fc', '#f472b6']}
+                  >
+                    <div className="flex flex-col h-full">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#8F00FF]/20 to-[#5E239D]/20 border border-[#8F00FF]/20 flex items-center justify-center mb-6">
+                        <IconComponent className="w-6 h-6 text-[#8F00FF]" strokeWidth={1.5} />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-4 tracking-tight">{feature.title}</h3>
+                      <p className="text-gray-400 leading-relaxed">{feature.description}</p>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 tracking-tight">{feature.title}</h3>
-                    <p className="text-gray-400 leading-relaxed">{feature.description}</p>
-                  </div>
+                  </BorderGlow>
                 </motion.div>
               );
             })}
@@ -195,37 +200,43 @@ function HomePage() {
       {/* Stats Section */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8 p-12 rounded-2xl backdrop-blur-xl bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10"
+          <BorderGlow
+            className="p-12 rounded-2xl"
+            backgroundColor="#0B0812"
+            colors={['#8F00FF', '#c084fc', '#f472b6']}
           >
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Shield className="w-6 h-6 text-[#8F00FF]" />
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">99.9%</div>
-              </div>
-              <p className="text-gray-400">System Uptime</p>
-            </motion.div>
+            <motion.div
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid md:grid-cols-3 gap-8"
+            >
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Shield className="w-6 h-6 text-[#8F00FF]" />
+                  <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">99.9%</div>
+                </div>
+                <p className="text-gray-400">System Uptime</p>
+              </motion.div>
 
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <TrendingUp className="w-6 h-6 text-[#8F00FF]" />
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">40%</div>
-              </div>
-              <p className="text-gray-400">Faster Time-to-Market</p>
-            </motion.div>
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <TrendingUp className="w-6 h-6 text-[#8F00FF]" />
+                  <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">40%</div>
+                </div>
+                <p className="text-gray-400">Faster Time-to-Market</p>
+              </motion.div>
 
-            <motion.div variants={fadeInUp} className="text-center">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <Database className="w-6 h-6 text-[#8F00FF]" />
-                <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">500M+</div>
-              </div>
-              <p className="text-gray-400">Records Migrated</p>
+              <motion.div variants={fadeInUp} className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Database className="w-6 h-6 text-[#8F00FF]" />
+                  <div className="text-5xl font-bold bg-gradient-to-r from-[#8F00FF] to-purple-400 bg-clip-text text-transparent">500M+</div>
+                </div>
+                <p className="text-gray-400">Records Migrated</p>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </BorderGlow>
         </div>
       </section>
 
